@@ -1,0 +1,42 @@
+.codicon {
+  transform: scale(1.2);
+  color: #333 !important;
+}
+.codicon {
+  transform: scale(1.2);
+}
+.codicon.codicon-find-previous-match:before {
+  content: "‹" !important;
+}
+.codicon.codicon-find-next-match:before {
+  content: "›" !important;
+}
+.codicon.codicon-widget-close:before {
+  content: "×" !important;
+}
+
+.codicon-find-selection {
+  display: none !important;
+}
+.codicon-case-sensitive:before {
+  content: "Aa" !important;
+  font-family: mono !important;
+  font-size: 0.8em !important;
+}
+.codicon-whole-word:before {
+  content: "W" !important;
+  font-family: mono !important;
+  font-size: 0.9em !important;
+}
+.codicon-regex:before {
+  content: ".*" !important;
+}
+.codicon-case-sensitive,
+.codicon-whole-word,
+.codicon-regex {
+  font-size: 0.8em;
+  transform: scale(95%);
+  border: 1px solid gray !important;
+  /* margin: 2px !important; */
+  border-radius: 2px;
+}

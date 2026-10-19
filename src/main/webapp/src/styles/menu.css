@@ -1,0 +1,31 @@
+.menu .panel-heading {
+  border-radius: 0;
+  background-color: #404654 !important;
+}
+
+.menu .panel-block.is-active {
+  border-radius: 0;
+  background-color: #e6e7e8 !important;
+}
+
+.menu {
+  display: flex;
+  height: 100vh;
+}
+
+.menu-panel {
+  height: 100%;
+  width: 22em;
+}
+
+.menu-page {
+  flex: 1;
+  height: 100%;
+  overflow: scroll;
+}
+
+.menu-page > * {
+  padding: 1.5em;
+  padding-left: 3em;
+  width: 50em;
+}

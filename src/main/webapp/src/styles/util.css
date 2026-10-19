@@ -1,0 +1,346 @@
+/* Don't show scrollbar for no reason */
+.abc {
+  position: fixed;
+  left: 10px;
+  top: 10px;
+}
+
+html {
+  overflow-y: auto !important;
+}
+
+.bg1 {
+  background: white;
+}
+.bg2,
+.metrics {
+  background: #f6f6f8;
+}
+.bg3 {
+  background: #f0f0f2;
+}
+.bg-none {
+  background: transparent;
+}
+.metrics {
+  position: relative;
+}
+
+.has-text-success {
+  color: green !important;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+.col {
+  display: flex;
+  flex-direction: column;
+}
+.flex-1 {
+  flex-grow: 1;
+}
+.shrink-0 {
+  flex-shrink: 0;
+}
+.shrink-1 {
+  flex-shrink: 1;
+}
+.gap-1 {
+  gap: 0.5em;
+}
+.gap-2 {
+  gap: 1em;
+}
+.ratio-square {
+  aspect-ratio: 1 / 1;
+}
+.overflow-visible {
+  overflow: visible;
+}
+.overflow-hidden {
+  overflow: hidden;
+}
+.overflow-auto {
+  overflow: auto;
+}
+.overflow-scroll {
+  overflow: scroll;
+}
+.h-0 {
+  height: 0;
+}
+
+.overflow-x-auto {
+  overflow-x: auto;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+.justify-stretch {
+  justify-content: stretch;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-end {
+  justify-content: end;
+}
+.align-center {
+  align-items: center;
+}
+.align-stretch {
+  align-items: stretch;
+}
+.align-start {
+  align-items: start;
+}
+.self-align-center {
+  align-self: center;
+}
+
+.w-100 {
+  width: 100%;
+}
+.w-content {
+  width: fit-content;
+}
+.h-100 {
+  height: 100%;
+}
+.fullscreen {
+  width: 100vw;
+  height: 100vh;
+}
+.shrink {
+  width: fit-content;
+}
+
+.size-150 {
+  font-size: 1.5em;
+}
+.size-95 {
+  font-size: 0.95em;
+}
+.size-90 {
+  font-size: 0.9em;
+}
+.size-80 {
+  font-size: 0.8em;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.pos-rel {
+  position: relative;
+}
+.pos-abs {
+  position: absolute;
+}
+.pos-bottom {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+}
+.pos-top-right {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+.pos-top-left {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.color-inherit {
+  color: inherit !important;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.border-1 {
+  border: 1px solid lightgray;
+}
+.border-top {
+  border-top: 1px solid lightgray;
+}
+.border-bottom {
+  border-bottom: 1px solid lightgray;
+}
+.border-current {
+  border-color: currentColor;
+}
+.round-1 {
+  border-radius: 0.5em;
+}
+.round-2 {
+  border-radius: 1em;
+}
+
+.text-center {
+  text-align: center;
+}
+.text-vcenter {
+  vertical-align: center;
+}
+
+.ms-choice {
+  padding: 1.2em;
+}
+.ms-drop li {
+  padding: 0 0.5em !important;
+}
+.ms-drop label {
+  height: 2em;
+}
+
+.no-scrollbar {
+  scrollbar-width: 0; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome/Safari/Opera */
+}
+
+input.checkbox {
+  width: 1.4em;
+  height: 1.4em;
+  cursor: pointer;
+  margin: 0.2em;
+  margin-right: 0.5em;
+}
+
+.hline {
+  border-top: 1px solid #000; /* line style */
+  width: 100%;
+  margin-left: 100px; /* adjust based on your text div width */
+  align-self: flex-end;
+  margin-top: -20px; /* adjust to align with your text */
+}
+
+.dropdown-content {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.accordion-open > .accordion-header > .place-grade-title {
+  font-weight: bold !important;
+  /* background: red !important; */
+}
+.accordion-open:has(> .accordion-header > .place-grade-title) {
+  border: 2px solid gold;
+  border-radius: 15px;
+  /* background: gold !important; */
+}
+.accordion-open:has(> .accordion-header > .place-grade-title):has(
+    .todo-done-true
+  ) {
+  border-color: green;
+}
+.place-grade-content {
+  border-radius: 12px;
+}
+
+.elevated {
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid #ddd;
+}
+
+.multibutton label {
+  transition: transform ease 0.1s;
+  color: black;
+  background-color: white;
+}
+.multibutton label:hover:not(:has(input[type="radio"]:checked)) {
+  background-color: #f8f8f8 !important;
+  transform: scale(1.06);
+}
+.multibutton label:has(input[type="radio"]:checked) {
+  background-color: #eff6ff !important;
+  color: #0437a6 !important;
+}
+
+.grow-on-hover {
+  transition: transform ease 0.1s;
+}
+.grow-on-hover:hover {
+  transform: scale(1.04);
+}
+
+.left-editor {
+  overflow-x: hidden;
+  flex: 1 0 auto;
+}
+.right-editor {
+  overflow-x: hidden;
+  flex: 1 1 auto;
+}
+.resize-border {
+  position: relative;
+  width: 4px;
+  border-right: dashed 2px #888;
+  background-color: transparent;
+  cursor: col-resize;
+}
+.resize-icon {
+  position: absolute;
+  bottom: 50%;
+  left: -9px;
+  color: #888;
+  /* color: lightblue; */
+}
+
+/* Hide the monaco scrollbar */
+.decorationsOverviewRuler {
+  display: none !important;
+}
+
+.main-module-container {
+  border-color: #5e64ff;
+  /* box-shadow: 0 0 8px 2px #a3b3ef; */
+}
+.main-module-container h3 {
+  color: #5e64ff !important;
+}
+
+.tabs .is-active {
+  background: rgba(160, 190, 250, 0.2) !important;
+}
+
+/* .peer-navigation>* { */
+/*     background: transparent; */
+/*     border: 1px solid lightgray; */
+/*     border-left: none; */
+/* } */
+/* .peer-navigation>*:first-child { */
+/*     border-left: 1px solid lightgray; */
+/* } */
+/* .peer-navigation button:hover { */
+/*     background: rgba(0,0,0,0.08); */
+/* } */
+.peer-criteria-title-button {
+  /* background: white; */
+  border: none;
+  border-radius: 20px;
+  background: transparent;
+  padding: 6px 10px;
+}
+.peer-criteria-title-button:hover:not(.disabled):not(.active) {
+  background: #e8e8e8 !important;
+}
+.peer-criteria-title-button.active {
+  background: rgba(160, 190, 250, 0.2) !important;
+  color: #0437a6;
+}
+.peer-criteria-title-button.disabled {
+  /* background: rgba(160,190,250,0.2) !important; */
+  color: lightgray;
+}

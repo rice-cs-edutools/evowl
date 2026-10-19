@@ -1,0 +1,32 @@
+.monaco-container {
+  /* height: 80vh; */
+  /* width: 40vw; */
+}
+
+.editor-tabs-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 30vw;
+  /* width: 30em; */
+}
+
+.tabs {
+  /* Make it so that the module dropdown shows up */
+  overflow: visible !important;
+}
+
+.editor {
+  border: 1px solid #c4c6c9;
+}
+
+#editor {
+  /* background-color: lightblue; */
+  height: 50vh;
+  width: 80vw;
+}
+
+.metrics {
+  /* background-color: #e4e6e9; */
+  min-width: 350px;
+  max-width: 350px;
+}

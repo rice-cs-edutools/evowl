@@ -1,0 +1,44 @@
+.accordion {
+  width: 100%;
+  margin: 0 auto;
+  /* overflow: hidden; */
+  /* background: white; */
+}
+
+.accordion-header {
+  cursor: grab;
+  user-select: none;
+}
+
+.accordion-body {
+  /* overflow: hidden; */
+  /* background: white; */
+}
+
+.accordion-arrow-container {
+  /* display: inline-block; */
+  /* width: 0; */
+  width: 2em;
+  /* transition: width 0.3s ease; */
+  /* overflow: hidden; */
+
+  /* Vertically center align the arrow icon */
+  display: flex;
+  align-items: center;
+}
+/* .accordion-header:hover .accordion-arrow-container { */
+/*     width: 2em; */
+/* } */
+
+.accordion-arrow {
+  padding-left: 0.5em;
+  transition: transform 0.3s ease;
+  /* transform: translateY(0.4em); */
+}
+
+.accordion-open
+  > .accordion-header
+  > .accordion-arrow-container
+  > .accordion-arrow {
+  transform: rotate(90deg) translate(-0.3em, -0.2em);
+}

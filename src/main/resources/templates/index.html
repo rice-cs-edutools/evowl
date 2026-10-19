@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <title>EvOwl</title>
+        <div hidden id="server-data" th:data-user-id="${userId}" th:data-roles="${roles}"></div>
+
+    </head>
+    <body>
+      <!--hidden message for when not all questions are answered-->
+      <h6 hidden id="hiddenMessage" class="subtitle is-6 block has-text-danger" style="text-align: left; margin: 30px" >Make sure to answer all questions before submitting!</h6>
+        <!--pop up for submit button-->
+        <div hidden id="popUp" class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <div class="box">
+                    <div style="text-align: center">Once you've submitted your evaluation, you will not be able to edit your responses. Are you sure you&apos;re ready to submit?<br><br></div>
+                    <div style="text-align: center">
+                        <button id="cancelButton" class="button is-danger is-dark is-centered">Continue Editing</button>
+                        <button id="confirmButton" class="button is-success is-dark is-centered">Confirm Submission</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--pop up for messages when in the peer editting page-->
+        <div hidden id="messageModal" class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <div class="box">
+                  <h6 id="messageModalContent" class="subtitle is-6 block has-text-danger text-center"></h6>
+                    <br>
+                    <div style="text-align: center">
+                        <button id="dismissMessageButton" class="button is-info is-dark is-centered">Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <div id="metricsEditorRoot"></div>
+    <div id="normalRoot">
+        <div class="wrapper" style="margin-bottom: 0">
+	    <h5 id="welcome" class="subtitle is-5" style="margin-left: 30px; margin-top: 20px; margin-bottom: 10px; padding-bottom: 20px;"
+    th:text="'Welcome to EvOwl, ' + ${userId} + '!'">Welcome to EvOwl, User!</h5>
+            <h6 id="connectivity" class="has-text-danger" style="margin-left: 30px; margin-bottom: 20px"></h6>
+            <div hidden id="error" class="has-text-danger">
+                <h6 id="errorMsg" style="margin-left: 30px"></h6>
+            </div>
+            <div hidden id="instructorDashboard"></div>
+            <div hidden id="peerContent">
+                <h6 id = "peerInstructions" style="margin-left: 30px"></h6>
+                <div class="content" style="margin-left: 30px; margin-bottom: 20px"><p id="pageTracker"></p></div>
+                <!--tables for submission 1 and 2-->
+                <div class="columns is-gapless" style="margin-left: 30px; margin-right: 30px; margin-bottom: 30px">
+                    <!--submission 1 table-->
+                    <div id="submission1" class="column is-half" style="display: none" >
+                        <table class="table is-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Implementation 1</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        <div class="tabs is-boxed">
+                                            <ul id="panel1">
+                                            </ul>
+                                        </div>
+                                        <div id="container1" class="is-fullwidth" style="height:600px"></div>
+                                    <!--<script src="public/scripts/monaco-editor/min/vs/loader.js"></script>-->
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div style="flex: 1 1 auto" id="submission1-editor" class="column is-half">
+                        <table class="table is-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Implementation 1</th>
+                                </tr>
+                            </thead>
+                            <tbody><tr><th id="submission1-editor-container"></th></tr></tbody>
+                        </table>
+                    </div>
+                    <!--submission 2 table-->
+                    <div style="display: none; flex: 1 1 auto" id="submission2" class="column is-half">
+                        <table class="table is-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Implementation 2</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        <div class="tabs is-boxed">
+                                            <ul id="panel2">
+                                                <li>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div id="container2" class="is-fullwidth" style="height:600px;"></div>
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div style="flex: 1 1 auto" id="submission2-editor" class="column is-half">
+                        <table class="table is-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Implementation 2</th>
+                                </tr>
+                            </thead>
+                            <tbody><tr><th id="submission2-editor-container"></th></tr></tbody>
+                        </table>
+                    </div>
+                </div>
+                <!--table for criteria-->
+                <div class="is-fullwidth block" style="margin: 30px">
+                    <table hidden id="peerCriteria" class="table is-bordered is-striped is-fullwidth">
+                        <!--top part of criteria table-->
+                        <thead>
+                            <tr>
+                                <th style="text-align: center; width: 50%">Criteria</th>
+                                <th style="text-align: center">Implementation 1 is Much Better</th>
+                                <th style="text-align: center">Implementation 1 is Slightly Better</th>
+                                <th style="text-align: center">Implementation 2 is Slightly Better</th>
+                                <th style="text-align: center">Implementation 2 is Much Better</th>
+                            </tr>
+                        </thead>
+                        <!--body of criteria table-->
+                        <tbody id="peerCriteriaTable"></tbody>
+                    </table>
+                </div>
+                <!--table for free response-->
+                <div class="is-fullwidth block" style="margin: 30px">
+                  <div id="peerFreeResponseContainer">
+                    <table hidden id="peerFreeResponse" class="table is-bordered is-striped is-fullwidth">
+                        <!--top part of free response table-->
+                        <thead>
+                            <tr>
+                                <th style="text-align: center">Question</th>
+                                <th style="text-align: center">Implementation 1</th>
+                                <th style="text-align: center">Implementation 2</th>
+                            </tr>
+                        </thead>
+                        <!--body of free response table-->
+                        <tbody id="peerFreeResponseTable"></tbody>
+                    </table>
+                  </div>
+                </div>
+                <div hidden id="feedbackDiv"  class="is-fullwidth block" style="margin: 30px">
+    		    <h6 id = "feedbackInstructions" style="padding-bottom: 20px">Please carefully read the following feedback. Once you&apos;re ready to proceed to the next exercises, press &quot;Continue&quot;.<p> </p></h6>
+                    <table  id="feedback" class="table is-bordered is-striped is-fullwidth">
+                        <tbody id="feedbackTable">
+                            <tr>
+                                <th style="text-align: center; width: 35%">Criteria</th>
+                                <th style="text-align: center; width: 18%">You Answered:</th>
+                                <th style="text-align: center">Correct?</th>
+                                <th style="text-align: center; width: 35%">Explanation</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+    
+            </div>
+            <div hidden id="selfContent">
+    
+                <h6 id = "selfInstructions" style="margin-left: 30px">Welcome to the EvOwl peer evaluation tool. First, please rate your own group&apos;s implementation on the following criteria. Your answers to this question will <b>not</b> affect your grade on the assignment, so please provide your honest self-assessment!</h6>
+                <!--table for criteria-->
+                <div class="is-fullwidth block" style="margin: 30px">
+                    <table hidden id="selfCriteria" class="table is-bordered is-striped is-fullwidth">
+                        <!--top part of criteria table-->
+                        <thead>
+                            <tr>
+                                <th style="text-align: center; width: 50%">Criteria</th>
+                                <th style="text-align: center">Excellent</th>
+                                <th style="text-align: center">Very Good</th>
+                                <th style="text-align: center">Good</th>
+                                <th style="text-align: center">Fair</th>
+                                <th style="text-align: center">Poor</th>
+                            </tr>
+                        </thead>
+                        <!--body of criteria table-->
+                        <tbody id="selfCriteriaTable"></tbody>
+                    </table>
+                </div>
+    
+                <!--table for free response-->
+                <div class="is-fullwidth block" style="margin: 30px">
+                    <table hidden id="selfFreeResponse" class="table is-bordered is-striped is-fullwidth">
+                        <!--top part of free response table-->
+                        <thead>
+                            <tr>
+                                <th style="text-align: center">Question</th>
+                                <th style="text-align: center">Answer</th>
+                            </tr>
+                        </thead>
+                        <!--body of free response table-->
+                        <tbody id="selfFreeResponseTable"></tbody>
+                    </table>
+                </div>
+    
+                <div hidden id="reflectionPage" style="margin: 25px">
+                    <h2 class="title is-6">Reflect on your overall experience completing this peer evaluation assignment. In general, did you find it easy or challenging to compare the pairs of programs that were presented to you? Were certain criteria more difficult to judge than others, and why? What did this experience teach you about program design?</h2>
+                    <div class="content"><p id="refCharCounter">Characters remaining: 1000</p></div>
+                    <textarea id="refText" class="textarea block" style="width: 100%; resize: vertical; "></textarea>
+                    <button id="refButton" class="button is-light is-pulled-right">Submit</button>
+                    <h6 hidden id="refMessage" class="subtitle is-6 block has-text-danger" style="text-align: left">Make sure to complete your reflection before submitting!</h6>
+                </div>
+            </div>
+            <div hidden id="instructorContent">
+                <h6 id="instructorInstructions" style="margin-left: 30px"></h6>
+                <div class="content" style="margin-left: 30px; margin-bottom: 30px"><p id="instructorPageTracker"></p></div>
+                <!--table for submission and criteria table -->
+                <div class="columns is-3 is-centered" style="margin-left: 30px; margin-right: 30px; margin-bottom: 30px">
+                    <!--tables for submission 1-->
+                    <div class="columns is-half" style="flex: 1 1 auto">
+                        <!--submission table-->
+                        <div style="flex: 1 1 auto" id="submission0" class="column is-half" >
+                            <table class="table is-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Student Implementation</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div hidden class="tabs is-boxed">
+                                                <ul id="panel0">
+                                                </ul>
+                                            </div>
+                                            <div hidden id="container0" class="is-fullwidth" style="height:600px;"></div>
+                                            <!--<script src="public/scripts/monaco-editor/min/vs/loader.js"></script>-->
+                                            <div id="editor-container"></div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+    <%--                <div class="column is-1" style="flex: 1 1 auto"></div>--%>
+                    <!--table for criteria-->
+                    <div class="column is-align-self-start block" style="flex: 1 1 auto">
+                      <div hidden id="instructorCompleteMetricsFirst">Once you complete the implementation-specific grades, the overall grades will become available.</div>
+                        <table hidden id="instructorCriteria" class="table is-bordered is-striped is-fullwidth">
+                            <!--top part of criteria table-->
+                            <tbody id="instructorCriteriaTable">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div hidden id="submission">
+                <!--button for submit-->
+                <button id="submitButton" class="button is-light block is-pulled-right js-modal-trigger" data-target="popUp" style="margin-right: 30px; margin-bottom: 30px">Submit</button>
+            </div>
+            <div hidden id="next">
+                <!--button for next in training-->
+                <button id="nextButton" class="button is-light block is-pulled-right js-modal-trigger" style="margin-right: 30px; margin-bottom: 30px">Next</button>
+            </div>
+            <script src="dist/app.js" type="module"></script>
+        </div>
+        <div style="padding-top: 2em" class="footer">
+        </div>
+    </div>
+    </body>
+</html>

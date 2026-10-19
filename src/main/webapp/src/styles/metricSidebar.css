@@ -1,0 +1,119 @@
+.metrics {
+  /* background-color: #f6f6f8; */
+}
+
+.metric-category-header {
+  margin: 0.4em 0;
+  flex-grow: 1;
+}
+
+.metric-category-separator {
+  border-top: 1px solid lightgray; /* line style */
+}
+
+.metric-search-popup {
+  position: absolute;
+  right: 0.3em;
+  bottom: 0.3em;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  border: solid 1px grey;
+  background-color: white;
+  width: fit-content;
+}
+
+.metric {
+  /* margin: 0.1em 0; */
+}
+
+.metric-children-vline {
+  margin-left: 0.7em;
+  border-left: solid 1px gray;
+  width: 0.7em;
+}
+
+.metric-border {
+  height: 0;
+  border-bottom: dashed thin lightgray;
+}
+
+.metric-title {
+  color: #6b6e77;
+}
+
+.metric-value {
+  margin: 0.5em;
+  font-weight: bold;
+  font-size: 0.9em;
+  font-family: "Courier New", Courier, monospace;
+}
+
+/* When hover, highlight it and show the arrow */
+.searchable-metric {
+  cursor: pointer;
+  border-radius: 0.4em;
+
+  /* Animation properties */
+  /* transition: background-color 0.4s ease-in-out; */
+  overflow: hidden;
+}
+
+.searchable-metric:hover {
+  background-color: #e8eaec;
+}
+
+.searchable-metric-arrow-container {
+  display: inline-block;
+  width: 2em;
+  transition: width 0.3s ease;
+  /* margin-left: 10px; */
+  overflow: hidden;
+}
+/* .searchable-metric:hover .searchable-metric-arrow-container { */
+/*     width: 2em; */
+/* } */
+
+.searchable-metric-arrow {
+  padding-left: 1em;
+}
+
+.metric-text-success {
+  color: green;
+}
+.metric-text-normal {
+  color: gray;
+}
+/* .metric-text-warning { color: #bf5f11; } */
+.metric-text-error {
+  color: red;
+}
+.metric-text-warning {
+  color: red;
+}
+
+.metric-underline-normal {
+  /* background: url(http://i.imgur.com/HlfA2is.gif) bottom repeat-x; */
+  /* background-color: lightblue;  */
+  /* border-bottom: 1.5px solid cadetblue; */
+}
+.metric-underline-warning {
+  /* background-color: #f9c475;  */
+  /* background: url(http://i.imgur.com/HlfA2is.gif) bottom repeat-x; */
+  border-bottom: 1.5px solid orange;
+}
+.metric-underline-error {
+  border-bottom: 1.5px solid #f88;
+  /* background: url(http://i.imgur.com/HlfA2is.gif) bottom repeat-x; */
+}
+
+.metric-search-result {
+  background-color: #ffe730;
+}
+/*
+.metric-search-result.metric-highlight-error {
+    background-color: #fcc;
+}
+.metric-search-result.metric-highlight-warning {
+    background-color: #fcc;
+}
+*/

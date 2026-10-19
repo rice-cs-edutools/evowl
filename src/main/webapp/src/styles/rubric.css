@@ -1,0 +1,31 @@
+.rubric {
+}
+
+.instructor-dashboard
+  :is(.accordion-hline, .accordion-body > *, .accordion-header) {
+  border: 1px solid lightgray;
+  border-top: none;
+}
+
+.instructor-dashboard .accordion-header {
+  border-top: none;
+
+  background-color: #f0f0f0;
+  padding: 0.4em 0.2em;
+  font-weight: 500;
+}
+
+.rubric-drag-icon {
+  padding-left: 0.5em;
+  padding-right: 0.8em;
+  cursor: grab;
+}
+
+.rubric-grade-points {
+  width: 3.5em;
+  border: 1px solid lightgray;
+}
+.rubric-grade-description {
+  width: 20em;
+  border: none;
+}
